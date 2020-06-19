@@ -29,7 +29,7 @@ preco = []
 frete = []
 entrega = []
 eixoX = []
-lista_produtos = []
+nome_produto = []
 
  #Abre o arquivo
 f=open(str(sys.argv[1]),"r")
@@ -39,14 +39,14 @@ for line in f:
   lista = []
   cont += 1
   eixoX.append(cont)
-  lista_produtos.append("Produto "+str(cont))
  
   lista = line.strip().split(";")
 
    #Armazena em listas
-  preco.append(float(lista[0].replace(",",".")))
-  frete.append(float(lista[1].replace(",",".")))
-  entrega.append(float(lista[2].replace(",",".")))
+  nome_produto.append(lista[0])
+  preco.append(float(lista[1].replace(",",".")))
+  frete.append(float(lista[2].replace(",",".")))
+  entrega.append(float(lista[3].replace(",",".")))
 
  #Fecha o arquivo
 f.close()
@@ -62,7 +62,7 @@ plt.bar(eixoX,fretes,align="center",color="red",bottom = precos)
 plt.bar(eixoX,prazos,align="center",color = "blue", bottom = precos+fretes)
 
  #Gera as informações no gráfico
-plt.xticks(eixoX,lista_produtos)
+plt.xticks(eixoX,nome_produto)
 plt.ylabel("Valor em Dinheiro R$ + Prazo de Entrega")
 plt.xlabel("Produtos")
 plt.title("Gráfico Comparador de Preços")
